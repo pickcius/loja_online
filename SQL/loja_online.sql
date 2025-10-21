@@ -85,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `Loja_online`.`Estoque` (
   `idEstoque` INT NOT NULL AUTO_INCREMENT,
   `Loja` INT NOT NULL,
   `Produtos` INT NOT NULL,
+  `Quantidade` INT NOT NULL DEFAULT 0,
   INDEX `fk_Loja_has_Produtos_has_Caracteristica_Loja1_idx` (`Loja` ASC),
   PRIMARY KEY (`idEstoque`),
   INDEX `fk_Estoque_Produtos1_idx` (`Produtos` ASC),
@@ -99,6 +100,7 @@ CREATE TABLE IF NOT EXISTS `Loja_online`.`Estoque` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
