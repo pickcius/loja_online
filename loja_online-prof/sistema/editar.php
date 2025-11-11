@@ -40,14 +40,14 @@ $colunaTipo = $sql->fetchColumn();
             <input type="text" name="preco"
             value="<?php echo $linha['preco']?>" class="form-control">
 
-            //<?php 
+            <?php 
                 while($linha['tipo'] = $selectTipo->fetch(PDO::FETCH_ASSOC)){
             ?>
             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                 <option selected>Selecione um tipo...</option>
                 <option value="1">One</option>
             </select>
-            <?php } ?>//
+            <?php } ?>
 
             <input type="text" name="tipo"
             value="<?php echo $linha['tipo']?>" class="form-control">
