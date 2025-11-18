@@ -1,0 +1,9 @@
+SELECT nome, preco, 'Mais Barato' AS Tipo
+FROM Produto
+WHERE preco = (SELECT MIN(preco) FROM Produto)
+
+UNION
+
+SELECT nome, preco, 'Mais Caro' AS Tipo
+FROM Produto
+WHERE preco = (SELECT MAX(preco) FROM Produto);

@@ -1,0 +1,2 @@
+SELECT AVG(preco) AS Media_Geral_Produtos
+FROM Produto;

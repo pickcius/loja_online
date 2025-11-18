@@ -1,0 +1,3 @@
+SELECT MAX(preco) AS Preco_Maximo_Eletronico
+FROM Produto
+WHERE FIND_IN_SET('Eletronico', categoria);

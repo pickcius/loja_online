@@ -1,0 +1,4 @@
+SELECT 
+    nome AS Nome_Produto,
+    CHAR_LENGTH(descricao) AS Qtde_Caracteres_Descricao
+FROM Produto;

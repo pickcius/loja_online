@@ -1,0 +1,3 @@
+SELECT AVG(preco) AS Media_Precos_Com_Desconto
+FROM Produto
+WHERE desconto_usados > 0;
