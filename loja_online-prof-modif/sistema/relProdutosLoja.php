@@ -14,7 +14,7 @@
     $params = [];
 
     if (!empty($nome)) {
-        $sqlFiltros[] = "nomeprod LIKE ?";
+        $sqlFiltros[] = "P LIKE ?";
         $params[] = '%' . $nome . '%';
     }
 
@@ -89,7 +89,7 @@
                     while($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                 <tr>
-                    <td><?= htmlspecialchars($linha['nomeprod']) ?></td>
+                    <td><?= htmlspecialchars($linha['nomeProd']) ?></td>
                     <td><?= htmlspecialchars($linha['descricao']) ?></td>
                     <td><?= number_format($linha['preco'], 2, ',', '.') ?></td>
                     <td><?= htmlspecialchars($linha['tipo']) ?></td>
