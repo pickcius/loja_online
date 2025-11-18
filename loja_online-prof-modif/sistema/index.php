@@ -90,16 +90,16 @@
             </a>
         </div>
 
-         <!-- Relatório Analítico -->
+        <!-- Relatório -->
         <div class="col-12 col-md-6 col-lg-3">
-            <a href="relatorio_analitico.php" class="text-decoration-none">
+            <a href="relatorio.php" class="text-decoration-none">
                 <div class="card dashboard-card shadow-sm h-100">
                     <div class="card-body text-center">
                         <div class="icon-placeholder mb-3">
-                            🏷️
+                        📄
                         </div>
-                        <h5 class="card-title">Faixa de Preço</h5>
-                        <p class="card-text text-muted">Visualize métricas e análises</p>
+                        <h5 class="card-title">Relatório Analitico</h5>
+                        <p class="card-text text-muted">Lista de realtorios</p>
                     </div>
                 </div>
             </a>
