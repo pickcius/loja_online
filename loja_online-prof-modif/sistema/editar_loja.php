@@ -20,7 +20,7 @@ $loja = $sql->fetch(PDO::FETCH_ASSOC);
 <div class="container mt-4">
     <h2>Editar Loja</h2>
 
-    <form action="editar_loja.php" method="POST">
+    <form action="editar_loja_acao.php" method="POST">
 
         <input type="hidden" name="id" value="<?= $loja['id'] ?>">
 

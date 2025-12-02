@@ -128,7 +128,15 @@ $sql = $pdo->query("SELECT * FROM Loja ORDER BY id DESC");
         </div>
     </div>
 
+    <div class="mt-3">
+    <a href="index.php" class="btn btn-outline-primary">
+        ⬅ Voltar
+    </a>
 </div>
+
+</div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 

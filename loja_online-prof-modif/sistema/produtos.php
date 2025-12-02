@@ -152,6 +152,15 @@ $sql = $pdo->query("SELECT * FROM Produto");
                     </form>
                 </div>
             </div>
+
+
+
+        </div>
+
+        <div class="mt-3">
+            <a href="index.php" class="btn btn-outline-primary">
+                ⬅ Voltar
+            </a>
         </div>
 
 
