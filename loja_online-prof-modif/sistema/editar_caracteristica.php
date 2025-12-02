@@ -29,6 +29,11 @@ $linha = $sql->fetch(PDO::FETCH_ASSOC);
         <input type="text" name="nome" class="form-control" value="<?= $linha['nome'] ?>" required>
     </div>
 
+    <div class="mb-3">
+        <label>Descrição</label>
+        <textarea name="descricao" class="form-control" rows="3"><?= $linha['descricao'] ?></textarea>
+    </div>
+
     <button type="submit" class="btn btn-primary">Salvar</button>
     <a href="caracteristicas.php" class="btn btn-secondary">Cancelar</a>
 

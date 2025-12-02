@@ -144,3 +144,25 @@ INSERT INTO Estoque (id_produto, id_loja, quantidade_disponivel) VALUES
 (10, 3, 2),
 (11, 2, 10),
 (11, 3, 3);
+
+-----------------------------------------------------------------------------------
+
+-- Tabela de Usuários (Clientes)
+CREATE TABLE Usuario (
+    id INT(4) AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela de Administradores
+CREATE TABLE Administrador (
+    id INT(4) AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    usuario VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    nivel ENUM('Master', 'Gerente', 'Comum') NOT NULL DEFAULT 'Comum'
+);
+
+----------------------------------------------------------------------------------

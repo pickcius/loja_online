@@ -1,14 +1,11 @@
 <?php
 include 'conexao.php';
 
-if (!isset($_POST['nome'])) {
-    die("Erro: acesso inválido!");
-}
-
 $nome = $_POST['nome'];
+$descricao = $_POST['descricao'];
 
-$sql = $pdo->prepare("INSERT INTO Caracteristica (nome) VALUES (?)");
-$sql->execute([$nome]);
+$sql = $pdo->prepare("INSERT INTO Caracteristica (nome, descricao) VALUES (?, ?)");
+$sql->execute([$nome, $descricao]);
 
 header("Location: caracteristicas.php");
 exit;
