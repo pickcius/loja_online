@@ -1,53 +1,65 @@
 <?php
+// atualizar.php
 include 'conexao.php';
 
-// Verifica se veio o POST
 if (!isset($_POST['btnSalvar'])) {
-    die("Acesso inválido!");
+    die("Acesso inválido.");
 }
 
-// Recebe os campos
-$id         = $_POST['id'];
-$nome       = $_POST['txtNome'];
-$descricao  = $_POST['txtDescricao'];
-$preco      = $_POST['txtPreco'];
-$tipo       = $_POST['txtTipo'];
-$categoria  = $_POST['txtCategoria'];
-$data       = $_POST['txtData'];
-$desconto   = $_POST['txtDesconto'];
-$quantidade = $_POST['txtQuantidade'];
-$loja       = $_POST['txtLoja'];
+// Recebe e valida inputs (pode adicionar mais validações se quiser)
+$id         = (int) $_POST['id'];
+$nome       = trim($_POST['txtNome']);
+$descricao  = trim($_POST['txtDescricao']);
+$preco      = (float) $_POST['txtPreco'];
+$tipo       = trim($_POST['txtTipo']);
+$categoria  = trim($_POST['txtCategoria']);
+$data       = trim($_POST['txtData']);
+$desconto   = (float) $_POST['txtDesconto'];
+$quantidade = (int) $_POST['txtQuantidade'];
+$loja       = (int) $_POST['txtLoja'];
 
-// Query de atualização
-$sql = $pdo->prepare("
-    UPDATE Produto 
-    SET 
-        nome = ?, 
-        descricao = ?, 
-        preco = ?, 
-        tipo = ?, 
-        categoria = ?, 
-        data_lancamento = ?, 
-        desconto_usados = ?, 
-        quantidade_disponivel = ?, 
-        id_loja = ?
-    WHERE id = ?
-");
+try {
+    $pdo->beginTransaction();
 
-$sql->execute([
-    $nome,
-    $descricao,
-    $preco,
-    $tipo,
-    $categoria,
-    $data,
-    $desconto,
-    $quantidade,
-    $loja,
-    $id
-]);
+    // Atualiza a tabela Produto
+    $sql = $pdo->prepare("
+        UPDATE Produto
+        SET nome = ?, descricao = ?, preco = ?, tipo = ?, categoria = ?, data_lancamento = ?, desconto_usados = ?
+        WHERE id = ?
+    ");
+    $sql->execute([
+        $nome,
+        $descricao,
+        $preco,
+        $tipo,
+        $categoria,
+        $data,
+        $desconto,
+        $id
+    ]);
 
-// Redireciona de volta para a página principal
-header("Location: produtos.php");  // OU principal.php, index.php — use a sua página correta!
-exit;
-?>
+    // Verifica se já existe um registro de estoque para esse produto e loja
+    $check = $pdo->prepare("SELECT id FROM Estoque WHERE id_produto = ? AND id_loja = ? LIMIT 1");
+    $check->execute([$id, $loja]);
+    $row = $check->fetch(PDO::FETCH_ASSOC);
+
+    if ($row) {
+        // Atualiza a quantidade no estoque existente
+        $upd = $pdo->prepare("UPDATE Estoque SET quantidade_disponivel = ? WHERE id = ?");
+        $upd->execute([$quantidade, $row['id']]);
+    } else {
+        // Se não existir, insere um novo registro de estoque para esse produto/loja
+        $ins = $pdo->prepare("INSERT INTO Estoque (id_produto, id_loja, quantidade_disponivel) VALUES (?, ?, ?)");
+        $ins->execute([$id, $loja, $quantidade]);
+    }
+
+    $pdo->commit();
+    header("Location: produtos.php?editado=1");
+    exit;
+
+} catch (Exception $e) {
+    $pdo->rollBack();
+    // Em produção não exiba a mensagem completa; aqui mostramos para depuração.
+    echo "Erro ao atualizar: " . $e->getMessage();
+    exit;
+}
