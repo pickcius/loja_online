@@ -126,6 +126,24 @@ $sql = $pdo->query("SELECT * FROM Produto");
                                 <label for="txtDesconto" class="form-label">Desconto</label>
                                 <input type="number" step="0.01" class="form-control" id="txtDesconto" name="txtDesconto" required>
                             </div>
+                            <!-- Novo Campo de Quantidade -->
+                            <div class="mb-3">
+                                <label for="txtQuantidade" class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="txtQuantidade" name="txtQuantidade" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtLoja" class="form-label">Loja</label>
+                                <select class="form-select" id="txtLoja" name="txtLoja" required>
+                                    <option value="">Selecione...</option>
+                                    <?php
+                                    // Conecte-se ao banco de dados e recupere as lojas
+                                    $sqlLoja = $pdo->query("SELECT * FROM Loja");
+                                    while ($loja = $sqlLoja->fetch(PDO::FETCH_ASSOC)) {
+                                        echo "<option value='{$loja['id']}'>{$loja['nome']} - {$loja['cidade']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -137,10 +155,10 @@ $sql = $pdo->query("SELECT * FROM Produto");
         </div>
 
 
-
-<!-- Scripts Bootstrap (caso não tenha incluído ainda) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Scripts Bootstrap (caso não tenha incluído ainda) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
+
 </html>
