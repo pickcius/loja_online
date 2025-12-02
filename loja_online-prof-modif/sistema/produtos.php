@@ -4,7 +4,7 @@ $sql = $pdo->query("SELECT * FROM Produto");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
