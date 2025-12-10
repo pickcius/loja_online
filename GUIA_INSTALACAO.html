@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Instalação - Sistema de Autenticação</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+
+        .step-card {
+            border-left: 5px solid #667eea;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .warning {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .success {
+            background-color: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .credentials {
+            background: white;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .credentials h5 {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+
+        .credential-item {
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin: 8px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>🛍️ Guia de Instalação - Sistema de Autenticação</h1>
+            <p class="lead">Loja Online - Sistema Seguro com Login e Cadastro</p>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <!-- Passo 1 -->
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Criar a Tabela de Usuários</h3>
+            <p>Execute este script para criar a tabela de usuários no banco de dados:</p>
+
+            <div class="code-block">
+                http://localhost/xampp/htdocs/loja_online/sistema/criar_tabela_usuarios.php
+            </div>
+
+            <p><strong>O que acontece:</strong></p>
+            <ul class="feature-list">
+                <li>A tabela <code>Usuario</code> é criada no banco de dados</li>
+                <li>Um usuário administrador padrão é criado automaticamente</li>
+                <li>Você verá uma mensagem de sucesso</li>
+            </ul>
+        </div>
+
+        <!-- Credenciais -->
+        <div class="credentials">
+            <h5>⚠️ Credenciais Padrão do Administrador</h5>
+            <div class="credential-item">
+                <strong>Email:</strong> admin@loja.com
+            </div>
+            <div class="credential-item">
+                <strong>Senha:</strong> admin123
+            </div>
+            <div class="warning">
+                <strong>⚠️ IMPORTANTE:</strong> Altere a senha do administrador assim que fizer o primeiro login!
+            </div>
+        </div>
+
+        <!-- Passo 2 -->
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Acessar a Página de Login</h3>
+            <p>Abra seu navegador e acesse:</p>
+
+            <div class="code-block">
+                http://localhost/xampp/htdocs/loja_online/sistema/login.php
+            </div>
+
+            <p>Você verá uma página com:</p>
+            <ul class="feature-list">
+                <li>Formulário de login à esquerda</li>
+                <li>Formulário de cadastro à direita</li>
+                <li>Design responsivo e moderno</li>
+            </ul>
+        </div>
+
+        <!-- Passo 3 -->
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Fazer Login</h3>
+            <p>Use as credenciais do administrador para fazer login:</p>
+
+            <div class="success">
+                <strong>Email:</strong> admin@loja.com<br>
+                <strong>Senha:</strong> admin123
+            </div>
+
+            <p>Após o login, você será redirecionado para o painel administrativo.</p>
+        </div>
+
+        <!-- Passo 4 -->
+        <div class="step-card">
+            <div class="step-number">4</div>
+            <h3>Acessar o Painel Administrativo</h3>
+            <p>O painel está disponível em:</p>
+
+            <div class="code-block">
+                http://localhost/xampp/htdocs/loja_online/sistema/index.php
+            </div>
+
+            <p><strong>No painel você pode:</strong></p>
+            <ul class="feature-list">
+                <li>Gerenciar produtos</li>
+                <li>Gerenciar lojas</li>
+                <li>Gerenciar características</li>
+                <li>Visualizar relatórios</li>
+                <li>Gerenciar usuários do sistema</li>
+            </ul>
+        </div>
+
+        <!-- Funcionalidades -->
+        <div class="step-card">
+            <h3>🎯 Funcionalidades Implementadas</h3>
+            <ul class="feature-list">
+                <li><strong>Login Seguro:</strong> Com validação de email e senha</li>
+                <li><strong>Cadastro de Usuários:</strong> Novos usuários podem se registrar</li>
+                <li><strong>Autenticação por Sessão:</strong> Sessões seguras gerenciadas automaticamente</li>
+                <li><strong>Proteção de Páginas:</strong> Apenas usuários autenticados podem acessar</li>
+                <li><strong>Roles de Acesso:</strong> Dois níveis: Cliente e Administrador</li>
+                <li><strong>Criptografia de Senhas:</strong> Usando bcrypt (padrão de segurança)</li>
+                <li><strong>Gerenciamento de Usuários:</strong> Painel para ativar/desativar/deletar usuários</li>
+                <li><strong>Logout Seguro:</strong> Destroi a sessão completamente</li>
+            </ul>
+        </div>
+
+        <!-- Proteção de Páginas -->
+        <div class="step-card">
+            <h3>🔐 Proteger Outras Páginas</h3>
+            <p>Se você quiser proteger outras páginas do seu sistema, adicione isso no topo do arquivo PHP:</p>
+
+            <div class="code-block">
+&lt;?php<br>
+require_once 'verificar_autenticacao.php';<br>
+verificar_admin(); // Apenas administradores<br>
+?&gt;
+            </div>
+
+            <p><strong>Opções:</strong></p>
+            <ul>
+                <li><code>verificar_admin()</code> - Apenas administradores podem acessar</li>
+                <li>Sem esta função - Qualquer usuário autenticado pode acessar (futuro)</li>
+            </ul>
+        </div>
+
+        <!-- Arquivos Criados -->
+        <div class="step-card">
+            <h3>📁 Arquivos Criados</h3>
+            <table class="table table-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th>Arquivo</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>login.php</code></td>
+                        <td>Página de login e cadastro</td>
+                    </tr>
+                    <tr>
+                        <td><code>logout.php</code></td>
+                        <td>Script para fazer logout</td>
+                    </tr>
+                    <tr>
+                        <td><code>criar_tabela_usuarios.php</code></td>
+                        <td>Cria a tabela (execute uma vez)</td>
+                    </tr>
+                    <tr>
+                        <td><code>verificar_autenticacao.php</code></td>
+                        <td>Verifica autenticação do usuário</td>
+                    </tr>
+                    <tr>
+                        <td><code>acesso_negado.php</code></td>
+                        <td>Página para acesso não autorizado</td>
+                    </tr>
+                    <tr>
+                        <td><code>gerenciar_usuarios.php</code></td>
+                        <td>Painel de gerenciamento de usuários</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- FAQ -->
+        <div class="step-card">
+            <h3>❓ Perguntas Frequentes</h3>
+
+            <h5 class="mt-3">Esqueci a senha do administrador</h5>
+            <p>Você pode resetar a tabela de usuários deletando a tabela e executando novamente <code>criar_tabela_usuarios.php</code></p>
+
+            <h5 class="mt-3">Como mudar a senha do administrador?</h5>
+            <p>Faça login e acesse o painel. No futuro será adicionada uma página de perfil para alterar a senha.</p>
+
+            <h5 class="mt-3">Usuários comuns podem acessar o painel administrativo?</h5>
+            <p>Não. Apenas administradores. Usuários comuns receberão erro 403 (Acesso Negado).</p>
+
+            <h5 class="mt-3">Como criar um novo administrador?</h5>
+            <p>No painel de gerenciamento de usuários, você poderá alterar o tipo de um usuário (futura implementação).</p>
+        </div>
+
+        <!-- Próximos Passos -->
+        <div class="step-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-left: none;">
+            <h3 style="color: white;">🚀 Próximos Passos</h3>
+            <ul class="feature-list" style="color: white;">
+                <li>Altere a senha do administrador padrão</li>
+                <li>Crie usuários comuns para sua equipe</li>
+                <li>Teste o acesso a páginas protegidas</li>
+                <li>Ajuste as permissões conforme necessário</li>
+            </ul>
+        </div>
+
+        <div class="text-center mt-5">
+            <p class="text-muted">Sistema de Autenticação - Loja Online 🛍️</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

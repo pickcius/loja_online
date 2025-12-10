@@ -1,3 +1,0 @@
-SELECT *
-FROM Produto
-WHERE data_lancamento < DATE_SUB(CURDATE(), INTERVAL 6 MONTH);

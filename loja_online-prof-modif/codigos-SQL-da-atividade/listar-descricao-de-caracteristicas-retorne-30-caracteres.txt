@@ -1,4 +1,0 @@
-SELECT 
-    nome AS Nome_Caracteristica,
-    LEFT(descricao, 30) AS Descricao_Resumida
-FROM Caracteristica;

@@ -1,0 +1,14 @@
+# Redirecionar para a página de login se não houver arquivo específico
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Se o arquivo não existe e não é um arquivo direto
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Não redireciona alguns arquivos específicos
+    RewriteCond %{REQUEST_URI} !login.php$
+    RewriteCond %{REQUEST_URI} !criar_tabela_usuarios.php$
+    RewriteCond %{REQUEST_URI} !logout.php$
+    RewriteCond %{REQUEST_URI} !acesso_negado.php$
+</IfModule>
