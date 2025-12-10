@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $produto = $stmt_prod->fetch(PDO::FETCH_ASSOC);
 
                     $preco_final = $produto['preco'];
-                    if ($produto['tipo'] == 'Usado') {
+                    if (!empty($produto['desconto_usados']) && $produto['desconto_usados'] > 0) {
                         $preco_final -= $produto['desconto_usados'];
                     }
 
@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $produto = $stmt_prod->fetch(PDO::FETCH_ASSOC);
 
                     $preco_final = $produto['preco'];
-                    if ($produto['tipo'] == 'Usado') {
+                    if (!empty($produto['desconto_usados']) && $produto['desconto_usados'] > 0) {
                         $preco_final -= $produto['desconto_usados'];
                     }
 
@@ -186,7 +186,7 @@ if (count($_SESSION['carrinho']) > 0) {
 
         if ($produto) {
             $preco_final = $produto['preco'];
-            if ($produto['tipo'] == 'Usado') {
+            if (!empty($produto['desconto_usados']) && $produto['desconto_usados'] > 0) {
                 $preco_final -= $produto['desconto_usados'];
             }
 
@@ -469,6 +469,11 @@ if (count($_SESSION['carrinho']) > 0) {
                                 </td>
                                 <td style="text-align: right;">
                                     <span class="preco-cell">
+                                        <?php 
+                                        if (!empty($item['desconto_usados']) && $item['desconto_usados'] > 0) {
+                                            echo '<div style="font-size: 0.9rem; color: #999; text-decoration: line-through;">R$ ' . number_format($item['preco'], 2, ',', '.') . '</div>';
+                                        }
+                                        ?>
                                         R$ <?php echo number_format($item['preco_final'], 2, ',', '.'); ?>
                                     </span>
                                 </td>

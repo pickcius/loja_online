@@ -25,7 +25,7 @@ try {
 
 // Buscar produtos e lojas
 try {
-    $sql = "SELECT p.id, p.nome, p.descricao, p.preco, p.tipo, p.categoria, 
+    $sql = "SELECT p.id, p.nome, p.descricao, p.preco, p.tipo, p.categoria, p.desconto_usados,
                    l.id as loja_id, l.nome as loja_nome, l.cidade as loja_cidade, e.quantidade_disponivel
             FROM Produto p
             INNER JOIN Estoque e ON p.id = e.id_produto
@@ -381,8 +381,17 @@ try {
 
                                 <div class="product-footer" style="margin-top: auto; flex-direction: column; gap: 10px;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                                        <div class="product-price">
-                                            R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?>
+                                        <div>
+                                            <?php 
+                                            $preco_exibido = $produto['preco'];
+                                            if (!empty($produto['desconto_usados']) && $produto['desconto_usados'] > 0) {
+                                                $preco_exibido -= $produto['desconto_usados'];
+                                                echo '<div style="font-size: 0.8rem; color: #999; text-decoration: line-through;">R$ ' . number_format($produto['preco'], 2, ',', '.') . '</div>';
+                                            }
+                                            ?>
+                                            <div class="product-price">
+                                                R$ <?php echo number_format($preco_exibido, 2, ',', '.'); ?>
+                                            </div>
                                         </div>
                                         <span class="product-stock <?php echo $produto['quantidade_disponivel'] > 0 ? 'stock-available' : 'stock-unavailable'; ?>">
                                             <?php echo $produto['quantidade_disponivel'] > 0 ? '✓ Em estoque' : '✗ Indisponível'; ?>
