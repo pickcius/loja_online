@@ -197,10 +197,10 @@ CREATE TABLE Administrador (
 
 INSERT INTO Cliente (nome, email, telefone, senha_hash)
 VALUES (
-    'João Silva',
-    'joao.silva@example.com',
-    '47988887777',
-    '1245' 
+    'Teste',
+    'teste@example.com',
+    '47999999999',
+    '12345' 
 );
 
 INSERT INTO Administrador (nome, senha_hash)

@@ -1,5 +1,6 @@
 <?php
 include '../config/conexao.php';
+include '../config/urls.php';
 
 // 1. Quantidade total de produtos diferentes
 $stmt1 = $pdo->query("SELECT COUNT(DISTINCT id) AS total FROM Produto");

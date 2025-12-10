@@ -5,19 +5,14 @@ include 'conexao.php';
 // 1. Média dos precos de todos os produtos
 $sql = $pdo->query("SELECT TRUNCATE(AVG(preco), 2) as media FROM Produto");
 $mediaPrecoProdutos = $sql->fetch(PDO::FETCH_ASSOC)['media'];
-?>
 
-<?php
-//<!-- Média dos preços com desconto -->
+// 2. Média dos preços com desconto
 $sql = "SELECT AVG(preco) AS Media_Precos_Com_Desconto FROM Produto WHERE desconto_usados > 0";
 $stmt = $pdo->query($sql);
 $dado = $stmt->fetch(PDO::FETCH_ASSOC);
 $mediaDesconto = $dado['Media_Precos_Com_Desconto'] ?? 0;
-//echo "<p><strong>Média com desconto:</strong> R$ " . number_format($mediaDesconto, 2, ',', '.') . "</p>";
 
-<?php
-//<!-- Produto mais caro e mais barato -->
-
+// 3. Produto mais caro e mais barato
 $sql = "SELECT nome, preco, 'Mais Barato' AS Tipo FROM Produto WHERE preco = (SELECT MIN(preco) FROM Produto)
 UNION
 SELECT nome, preco, 'Mais Caro' AS Tipo FROM Produto WHERE preco = (SELECT MAX(preco) FROM Produto)";
@@ -44,10 +39,8 @@ if (count($dados) > 0) {
 } else {
     $tabelaMaisBaratoCaro = "<p>Nenhum resultado encontrado.</p>";
 }
-?>
 
-<?php
-//<!-- Preço máximo entre eletrônicos -->
+// 4. Preço máximo entre eletrônicos
 $sql = "SELECT MAX(preco) AS Preco_Maximo_Eletronico 
         FROM Produto 
         WHERE FIND_IN_SET('Eletronico', categoria)";
@@ -58,10 +51,8 @@ $dado = $stmt->fetch(PDO::FETCH_ASSOC);
 $precoMaxEletronico = "<p><strong>Preço máximo:</strong> R$ " .
     number_format($dado['Preco_Maximo_Eletronico'], 2, ',', '.') .
     "</p>";
-?>
 
-<?php
-//Produtos lançados há mais de 6 meses
+// 5. Produtos lançados há mais de 6 meses
 $sql = "SELECT * FROM Produto 
         WHERE data_lancamento < DATE_SUB(CURDATE(), INTERVAL 6 MONTH)";
 
@@ -95,10 +86,8 @@ if (count($dados) > 0) {
 } else {
     $tabelaProdutosAntigos = "<p>Nenhum resultado.</p>";
 }
-?>
 
-<?php
-// Listar características resumidas
+// 6. Listar características resumidas
 $sql = "SELECT nome AS Nome_Caracteristica, 
                LEFT(descricao, 30) AS Descricao_Resumida 
         FROM Caracteristica";
@@ -129,10 +118,8 @@ if (count($dados) > 0) {
 } else {
     $tabelaCaracteristicas = "<p>Nenhum resultado.</p>";
 }
-?>
 
-<?php
-// Contar caracteres de descrição
+// 7. Contar caracteres de descrição
 $sql = "SELECT nome AS Nome_Produto, 
                CHAR_LENGTH(descricao) AS Qtde_Caracteres_Descricao 
         FROM Produto";
