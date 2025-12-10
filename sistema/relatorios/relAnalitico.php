@@ -1,0 +1,120 @@
+<?php
+
+include '../config/conterel.php';
+include '../config/conexao.php';
+include '../config/urls.php';
+
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema de Produtos</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="<?php echo CSS_URL; ?>bootstrap.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .dashboard-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .icon-placeholder {
+            font-size: 2.5rem;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-5">
+        <h1 class="text-center mb-5">Relatório Analítico</h1>
+
+        <div class="row g-4 mb-5">
+
+            <div class="card">
+                <div class="card-header">
+                    Média dos preços de todos os produtos
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">R$ <?= $mediaPrecoProdutos ?></h5>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Média dos preços com desconto
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">R$ <?= $mediaDesconto ?></h5>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Produto mais caro e mais barato
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"> <?= $tabelaMaisBaratoCaro ?></h5>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Preço máximo entre eletrônicos
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"> <?= $precoMaxEletronico ?></h5>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Produtos lançados há mais de 6 meses
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"> <?= $tabelaProdutosAntigos ?></h5>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Listar características resumidas
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"> <?= $tabelaCaracteristicas ?></h5>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    Contar caracteres de descrição
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"> <?= $tabelaCaracteresDescricao ?></h5>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS  -->
+    <script src="<?php echo JS_URL; ?>bootstrap.bundle.js"></script>
+
+</body>
+
+</html>
