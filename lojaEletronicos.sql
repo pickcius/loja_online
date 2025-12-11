@@ -200,13 +200,16 @@ VALUES (
     'Teste',
     'teste@example.com',
     '47999999999',
-    '12345' 
+    '$2y$10$zXLUEy.0SatEMpvKDBH1Yux99R.gNZwJzTuguSXCmuBOkHzPV6k96' 
+    ---1245
 );
 
 INSERT INTO Administrador (nome, senha_hash)
 VALUES (
     'admin',
-    'teste123'
+    '$2y$10$7591gZ6HLOTS/Q61tVejg.4ccWMgxlFDhcSItb/bS9VZQXbOfdpKy'
+    ---teste123
+
 );
 
 ---------------------------------------

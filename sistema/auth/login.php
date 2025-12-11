@@ -27,21 +27,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acao']) && $_POST['aca
         $erro = "Email e senha são obrigatórios!";
     } else {
         try {
-            $sql = "SELECT id, nome, email FROM Cliente WHERE email = ? AND senha_hash = ?";
+            // Buscar cliente apenas pelo email (não comparar senha aqui)
+            $sql = "SELECT id, nome, email, senha_hash FROM Cliente WHERE email = ?";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$email, $senha]);
+            $stmt->execute([$email]);
 
             if ($stmt->rowCount() > 0) {
                 $cliente = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                // Login de cliente bem-sucedido
-                $_SESSION['usuario_id'] = $cliente['id'];
-                $_SESSION['usuario_nome'] = $cliente['nome'];
-                $_SESSION['usuario_email'] = $cliente['email'];
-                $_SESSION['usuario_tipo'] = 'cliente';
+                // Verificar a senha com password_verify()
+                if (password_verify($senha, $cliente['senha_hash'])) {
+                    // Login de cliente bem-sucedido
+                    $_SESSION['usuario_id'] = $cliente['id'];
+                    $_SESSION['usuario_nome'] = $cliente['nome'];
+                    $_SESSION['usuario_email'] = $cliente['email'];
+                    $_SESSION['usuario_tipo'] = 'cliente';
 
-                header("Location: " . HUB_URL . "hub.php");
-                exit;
+                    header("Location: " . HUB_URL . "hub.php");
+                    exit;
+                } else {
+                    $erro = "Email ou senha incorretos!";
+                }
             } else {
                 $erro = "Email ou senha incorretos!";
             }
@@ -68,7 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acao']) && $_POST['aca
             if ($stmt->rowCount() > 0) {
                 $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                if ($admin['senha_hash'] === $senha) {
+                // Verificar a senha com password_verify()
+                if (password_verify($senha, $admin['senha_hash'])) {
                     // Login bem-sucedido
                     $_SESSION['usuario_id'] = $admin['id'];
                     $_SESSION['usuario_nome'] = $admin['nome'];
@@ -116,9 +123,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acao']) && $_POST['aca
             if ($stmt->rowCount() > 0) {
                 $erro = "Este email já está cadastrado!";
             } else {
+                // Gerar hash seguro da senha com password_hash()
+                $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+                
                 $sql_insert = "INSERT INTO Cliente (nome, email, telefone, senha_hash) VALUES (?, ?, ?, ?)";
                 $stmt = $pdo->prepare($sql_insert);
-                $stmt->execute([$nome, $email, $telefone, $senha]);
+                $stmt->execute([$nome, $email, $telefone, $senha_hash]);
 
                 $sucesso = "Cadastro realizado com sucesso! Agora você pode fazer login com seu email.";
             }

@@ -1,10 +1,12 @@
+
+
 <?php
 /**
  * Configuração centralizada de URLs do projeto
  * Use essas constantes em vez de caminhos relativos hardcoded
  */
 
-// Detectar a raiz do projeto
+// Detectar a raiz do projeto 
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
 $host = $_SERVER['HTTP_HOST'];
 $root = str_replace('/sistema', '', dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))));
@@ -36,5 +38,5 @@ function getRelativePath($from, $to) {
     $relPath = array_merge(array_fill(0, count(array_diff_assoc($from, $to)), '..'), $relPath);
     
     return implode('/', $relPath);
-}
+} 
 ?>
