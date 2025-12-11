@@ -4,6 +4,7 @@ verificar_cliente();
 
 require_once '../config/conexao.php';
 require_once '../config/urls.php';
+require_once '../funcoes/funcoes.php';
 
 // Inicia sessão para carrinho
 if (!isset($_SESSION['carrinho'])) {

@@ -1,5 +1,4 @@
 
-
 <?php
 /**
  * Configuração centralizada de URLs do projeto

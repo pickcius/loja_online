@@ -1,6 +1,7 @@
 <?php
 require_once '../auth/verificar_autenticacao.php';
 require_once '../config/urls.php';
+require_once '../funcoes/funcoes.php';
 
 // Verifica se é cliente (não admin)
 if ($_SESSION['usuario_tipo'] != 'cliente') {
